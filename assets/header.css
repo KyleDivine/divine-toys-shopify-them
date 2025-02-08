@@ -1,25 +1,34 @@
-/* ✅ Ensure Header Stays Consistent */
+/* ✅ Header Styling */
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Space out elements */
   align-items: center;
-  padding: 15px 3%;
-  background: black;
+  padding: 10px 30px;
+  background-color: #000; /* Keep black background */
   color: white;
+  width: 100%;
 }
 
-/* ✅ Ensure Navigation & Logo Stay in Place */
+/* ✅ Logo Sizing */
+.header__logo img {
+  width: 180px; /* Smaller logo size */
+  height: auto;
+}
+
+/* ✅ Navigation Styles */
 .header__nav {
   flex-grow: 1;
-  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
 }
 
 .header__menu {
   list-style: none;
+  display: flex;
+  gap: 20px;
   padding: 0;
   margin: 0;
-  display: flex;
-  gap: 25px;
 }
 
 .header__menu-item {
@@ -31,59 +40,63 @@
   color: white;
   font-size: 16px;
   font-weight: bold;
-  padding: 8px 12px;
-  transition: color 0.3s;
 }
 
 .header__menu-link:hover {
-  color: #FFD700; /* Gold hover effect */
+  color: #ffcc00; /* Highlight color */
 }
 
-/* ✅ Icons Styling - Search, Account, Cart */
+/* ✅ Icons Area */
 .header__icons {
   display: flex;
+  gap: 15px;
   align-items: center;
-  gap: 20px;
 }
 
+/* ✅ Fix SVG Icons */
 .header__icon {
-  width: 24px;
-  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  position: relative; /* Ensures proper alignment */
+  width: 24px; /* Set width */
+  height: 24px; /* Set height */
 }
 
 .header__icon svg {
-  width: 24px;
-  height: 24px;
-  fill: white; /* Ensures visibility */
+  width: 100%;
+  height: 100%;
+  fill: white; /* Ensure icons are visible */
 }
 
-/* ✅ Fix for Cart Item Count Display */
+/* ✅ Cart Badge */
 .cart-count-bubble {
   background-color: red;
   color: white;
   font-size: 12px;
   font-weight: bold;
+  padding: 3px 6px;
   border-radius: 50%;
-  padding: 3px 7px;
-  position: absolute;
-  top: -5px;
-  right: -5px;
+  position: relative;
+  top: -8px;
+  right: -10px;
 }
 
-/* ✅ Ensure Header Is Responsive */
-@media screen and (max-width: 768px) {
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
   .header {
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   .header__nav {
+    margin-left: 0;
     margin-top: 10px;
+  }
+
+  .header__menu {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .header__icons {
