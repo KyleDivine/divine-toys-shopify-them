@@ -1,13 +1,10 @@
-<link rel="stylesheet" href="{{ 'header.css' | asset_url }}" media="print" onload="this.media='all'">
-<script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
-
-<header class="header color-{{ section.settings.color_scheme }} gradient">
+<header class="header">
   <div class="header__inner page-width">
     <!-- Logo -->
     <div class="header__logo">
       <a href="{{ routes.root_url }}">
         {%- if settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 250 }}" alt="{{ shop.name }}" class="header__logo-img">
+          <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}">
         {%- else -%}
           <span class="header__logo-text">{{ shop.name }}</span>
         {%- endif -%}
@@ -17,42 +14,13 @@
     <!-- Navigation -->
     <nav class="header__nav">
       <ul class="header__menu">
-        {%- for link in section.settings.menu.links -%}
+        {%- for link in linklists[section.settings.menu].links -%}
           <li class="header__menu-item">
             <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
           </li>
         {%- endfor -%}
       </ul>
     </nav>
-
-    <!-- Header Icons -->
-    <div class="header__icons">
-      <!-- Search Icon -->
-      <a href="{{ routes.search_url }}" class="header__icon header__icon--search">
-        <span class="svg-wrapper header__icon-size">{{ 'icon-search.svg' | inline_asset_content }}</span>
-      </a>
-
-      <!-- Account Icon -->
-      {%- if shop.customer_accounts_enabled -%}
-        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account">
-          <span class="svg-wrapper header__icon-size">{{ 'icon-account.svg' | inline_asset_content }}</span>
-        </a>
-      {%- endif -%}
-
-      <!-- Cart Icon -->
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart">
-        <span class="svg-wrapper header__icon-size">
-          {%- if cart == empty -%}
-            {{ 'icon-cart-empty.svg' | inline_asset_content }}
-          {%- else -%}
-            {{ 'icon-cart.svg' | inline_asset_content }}
-          {%- endif -%}
-        </span>
-        {%- if cart.item_count > 0 -%}
-          <span class="cart-count-bubble">{{ cart.item_count }}</span>
-        {%- endif -%}
-      </a>
-    </div>
   </div>
 </header>
 
@@ -65,66 +33,8 @@
       "type": "link_list",
       "id": "menu",
       "default": "main-menu",
-      "label": "Main Menu"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "default": "scheme-1",
-      "label": "Color Scheme"
+      "label": "Navigation Menu"
     }
   ]
 }
 {% endschema %}
-
-{% style %}
-  .header {
-    padding: 15px 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .header__logo img {
-    max-height: 50px;
-  }
-
-  .header__menu {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  .header__menu-item {
-    font-size: 16px;
-    text-transform: uppercase;
-  }
-
-  .header__icons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .header__icon-size {
-    width: 24px;
-    height: 24px;
-  }
-
-  .cart-count-bubble {
-    background: red;
-    color: white;
-    border-radius: 50%;
-    font-size: 12px;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: -5px;
-    right: -5px;
-  }
-{% endstyle %}
