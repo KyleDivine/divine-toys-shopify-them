@@ -21,20 +21,24 @@
 }
 
 /* ✅ Logo Flush Left */
-.header__logo {
-  margin-right: auto;
+.header__logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.header__logo img {
+.header__logo-link {
+  display: block;
+}
+
+.header__logo-img {
   max-width: 200px;
   height: auto;
 }
 
-/* ✅ Navigation Positioned Next to Logo */
+/* ✅ Navigation Positioned at Bottom Right of Logo */
 .header__nav {
-  flex-grow: 1;
-  display: flex;
-  justify-content: flex-start;
+  margin-top: 10px;
 }
 
 .header__menu {
