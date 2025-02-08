@@ -1,0 +1,22 @@
+# Ignore all hidden system files
+.DS_Store
+Thumbs.db
+*.log
+
+# Ignore Shopify theme settings
+config/settings_data.json
+
+# Ignore local environment files
+.env
+node_modules/
+package-lock.json
+yarn.lock
+
+# Ignore build files
+dist/
+tmp/
+*.zip
+
+# Ignore VS Code & JetBrains IDE settings
+.vscode/
+.idea/
