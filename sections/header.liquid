@@ -3,57 +3,54 @@
 <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
 
 <header class="header">
-  <div class="header__inner">
+  <div class="header__container">
 
-    <div class="header__flex">
-      
-      <!-- ✅ Logo: Flush Left -->
-      <div class="header__logo-container">
-        <a href="{{ routes.root_url }}" class="header__logo-link">
-          <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647" 
-               alt="Divine Toys Logo" 
-               class="header__logo-img">
-        </a>
-        
-        <!-- ✅ Navigation Positioned at Bottom Right of Logo -->
-        <nav class="header__nav">
-          <ul class="header__menu">
-            {%- for link in section.settings.menu.links -%}
-              <li class="header__menu-item">
-                <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        </nav>
-      </div>
+    <!-- ✅ Logo Positioned on Far Left -->
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="header__logo-link">
+        <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647"
+             alt="Divine Toys Logo" 
+             class="header__logo-img">
+      </a>
+    </div>
 
-      <!-- ✅ Header Icons (Far Right) -->
-      <div class="header__icons">
-        <a href="{{ routes.search_url }}" class="header__icon">
-          <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
+    <!-- ✅ Navigation Positioned at Bottom Right of Logo -->
+    <nav class="header__nav">
+      <ul class="header__menu">
+        {%- for link in section.settings.menu.links -%}
+          <li class="header__menu-item">
+            <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <!-- ✅ Header Icons on Far Right -->
+    <div class="header__icons">
+      <a href="{{ routes.search_url }}" class="header__icon">
+        <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
+      </a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon">
+          <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
         </a>
-        {%- if shop.customer_accounts_enabled -%}
-          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon">
-            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-          </a>
-        {%- endif -%}
-        <a href="{{ routes.cart_url }}" class="header__icon">
-          <span class="svg-wrapper">
-            {%- if cart == empty -%}
-              {{ 'icon-cart-empty.svg' | inline_asset_content }}
-            {%- else -%}
-              {{ 'icon-cart.svg' | inline_asset_content }}
-            {%- endif -%}
-          </span>
-          {%- if cart.item_count > 0 -%}
-            <span class="cart-count-bubble">{{ cart.item_count }}</span>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="header__icon">
+        <span class="svg-wrapper">
+          {%- if cart == empty -%}
+            {{ 'icon-cart-empty.svg' | inline_asset_content }}
+          {%- else -%}
+            {{ 'icon-cart.svg' | inline_asset_content }}
           {%- endif -%}
-        </a>
-      </div>
+        </span>
+        {%- if cart.item_count > 0 -%}
+          <span class="cart-count-bubble">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+    </div>
 
-    </div> <!-- End .header__flex -->
+  </div> <!-- End .header__container -->
 
-  </div>
 </header>
 
 {% schema %}
