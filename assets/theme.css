@@ -24,3 +24,13 @@ a {
 .hidden {
   display: none;
 }
+/* 🚀 FORCE REMOVE "My Store" */
+.header__menu-item a[href*="my-store"],
+.header__menu-item:has(a[href*="my-store"]) {
+  display: none !important;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  position: absolute;
+}
