@@ -1,0 +1,7 @@
+{% comment %}
+Header section for Divine Toys
+{% endcomment %}
+
+<header>
+  <h1>Galactic Squad</h1>
+</header>
