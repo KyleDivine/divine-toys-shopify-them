@@ -1,13 +1,14 @@
-/* 🔹 Header Styling */
+/* 🔹 General Header Styling */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #0a0a0a;
-  padding: 10px 30px;
+  padding: 15px 30px;
+  width: 100%;
 }
 
-/* 🔹 Navigation */
+/* 🔹 Force Horizontal Navigation */
 .header__nav {
   flex-grow: 1;
   text-align: center;
@@ -49,7 +50,12 @@
   font-size: 20px;
 }
 
-/* 🔹 Fixing Alignment */
+/* 🔹 Fix Alignment of Logo */
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+
 .header__logo img {
   max-width: 150px;
 }
