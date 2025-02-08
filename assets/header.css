@@ -3,30 +3,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
-  background: black; /* Sci-fi aesthetic */
+  padding: 15px 40px;
+  background: black;
   color: white;
-  position: relative;
   width: 100%;
+  position: relative;
 }
 
-/* ✅ LOGO (ALIGNED LEFT, SIZE FIXED) */
+/* ✅ LOGO (LEFT, FIXED SIZE) */
 .header__logo {
-  flex: 1;
+  flex: 0 0 auto; /* Prevents it from growing */
   display: flex;
   justify-content: flex-start;
 }
 
 .header__logo img {
-  height: 80px; /* Keeping the original large size */
+  height: 80px; /* Fixed size */
   width: auto;
 }
 
-/* ✅ NAVIGATION (NEXT TO LOGO, NOT BELOW) */
+/* ✅ NAVIGATION (RIGHT OF LOGO) */
 .header__nav {
-  flex: 2;
+  flex: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Ensures it's next to the logo */
+  margin-left: 40px; /* Spacing from logo */
 }
 
 .header__menu {
@@ -50,17 +51,17 @@
 }
 
 .header__menu-link:hover {
-  color: #FFD700; /* Sci-fi glow effect */
+  color: #FFD700;
 }
 
-/* ✅ ICONS (PROPERLY POSITIONED TO THE FAR RIGHT) */
+/* ✅ ICONS (ALIGNED TO TOP RIGHT) */
 .header__icons {
-  flex: 1;
+  flex: 0 0 auto;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 40px; /* Increased spacing */
-  margin-right: 20px; /* Moves icons further right */
+  gap: 30px;
+  margin-left: auto; /* Forces icons to the far right */
 }
 
 .header__icon {
@@ -75,14 +76,14 @@
   transform: scale(1.1);
 }
 
-/* ✅ ICON STYLING */
+/* ✅ ICON SIZES */
 .header__icon svg {
-  width: 32px; /* Increased size */
-  height: 32px;
+  width: 28px;
+  height: 28px;
   fill: white;
 }
 
-/* ✅ CART BADGE FOR ITEM COUNT */
+/* ✅ CART BADGE (DISPLAYS ITEM COUNT) */
 .cart-count-bubble {
   background: red;
   color: white;
@@ -98,7 +99,6 @@
 /* ✅ RESPONSIVE DESIGN */
 @media screen and (max-width: 1024px) {
   .header {
-    flex-direction: row;
     padding: 15px 20px;
   }
 
@@ -111,8 +111,8 @@
   }
 
   .header__icon svg {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
 }
 
