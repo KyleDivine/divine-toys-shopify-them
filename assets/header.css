@@ -4,13 +4,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
-  background: black; /* Keeps sci-fi aesthetic */
+  background: black; /* Sci-fi aesthetic */
   color: white;
   position: relative;
   width: 100%;
 }
 
-/* ✅ LOGO (ALIGNED LEFT) */
+/* ✅ LOGO (ALIGNED LEFT, SIZE FIXED) */
 .header__logo {
   flex: 1;
   display: flex;
@@ -18,7 +18,7 @@
 }
 
 .header__logo img {
-  height: 60px; /* Adjusted for proportional scaling */
+  height: 80px; /* Keeping the original large size */
   width: auto;
 }
 
@@ -50,15 +50,17 @@
 }
 
 .header__menu-link:hover {
-  color: #FFD700; /* Sci-fi inspired glow effect */
+  color: #FFD700; /* Sci-fi glow effect */
 }
 
-/* ✅ ICONS (ALIGNED TOP RIGHT) */
+/* ✅ ICONS (PROPERLY POSITIONED TO THE FAR RIGHT) */
 .header__icons {
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  gap: 20px;
+  align-items: center;
+  gap: 40px; /* Increased spacing */
+  margin-right: 20px; /* Moves icons further right */
 }
 
 .header__icon {
@@ -75,8 +77,8 @@
 
 /* ✅ ICON STYLING */
 .header__icon svg {
-  width: 28px;
-  height: 28px;
+  width: 32px; /* Increased size */
+  height: 32px;
   fill: white;
 }
 
@@ -87,10 +89,10 @@
   font-size: 12px;
   font-weight: bold;
   border-radius: 50%;
-  padding: 2px 6px;
+  padding: 3px 7px;
   position: absolute;
-  top: -5px;
-  right: -10px;
+  top: -8px;
+  right: -12px;
 }
 
 /* ✅ RESPONSIVE DESIGN */
@@ -100,25 +102,17 @@
     padding: 15px 20px;
   }
 
-  .header__logo img {
-    height: 50px;
-  }
-
   .header__menu {
-    gap: 15px;
-  }
-
-  .header__menu-link {
-    font-size: 16px;
+    gap: 20px;
   }
 
   .header__icons {
-    gap: 15px;
+    gap: 25px;
   }
 
   .header__icon svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 }
 
@@ -145,5 +139,6 @@
 
   .header__icons {
     margin-top: 10px;
+    gap: 20px;
   }
 }
