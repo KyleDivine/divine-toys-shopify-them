@@ -1,0 +1,60 @@
+/* 🔹 Header Styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0a0a0a;
+  padding: 10px 30px;
+}
+
+/* 🔹 Navigation */
+.header__nav {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.header__menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.header__menu-item {
+  display: inline-block;
+}
+
+.header__menu-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header__menu-link:hover {
+  color: #00aaff;
+}
+
+/* 🔹 Icons */
+.header__icons {
+  display: flex;
+  gap: 15px;
+}
+
+.header__icon {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* 🔹 Fixing Alignment */
+.header__logo img {
+  max-width: 150px;
+}
+
+.header__logo-text {
+  font-size: 22px;
+  font-weight: bold;
+}
