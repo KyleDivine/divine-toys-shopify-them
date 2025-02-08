@@ -1,23 +1,37 @@
-/* 🔹 General Header Styling */
+/* Reset */
+body, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Header Container */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0a0a0a;
-  padding: 15px 30px;
-  width: 100%;
+  padding: 20px 40px;
+  background: #000;
+  color: #fff;
 }
 
-/* 🔹 Force Horizontal Navigation */
+/* Logo */
+.header__logo img {
+  height: 50px;
+}
+
+.header__logo-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Navigation */
 .header__nav {
   flex-grow: 1;
   text-align: center;
 }
 
 .header__menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -28,39 +42,38 @@
 }
 
 .header__menu-link {
-  color: #ffffff;
   text-decoration: none;
+  color: #fff;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
-.header__menu-link:hover {
-  color: #00aaff;
-}
-
-/* 🔹 Icons */
+/* Header Icons */
 .header__icons {
   display: flex;
-  gap: 15px;
+  gap: 20px;
 }
 
 .header__icon {
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-/* 🔹 Fix Alignment of Logo */
-.header__logo {
   display: flex;
   align-items: center;
 }
 
-.header__logo img {
-  max-width: 150px;
+.svg-wrapper {
+  width: 24px;
+  height: 24px;
+  fill: white;
 }
 
-.header__logo-text {
-  font-size: 22px;
+/* Cart Badge */
+.cart-count-bubble {
+  background: red;
+  color: white;
+  font-size: 14px;
   font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -10px;
 }
