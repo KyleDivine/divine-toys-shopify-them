@@ -1,100 +1,80 @@
-<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'featured-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- unless section.settings.quick_add == 'none' -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-form.js' | asset_url }}" defer></script>
+{%- endunless -%}
+
+{%- if section.settings.quick_add == 'standard' -%}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer></script>
+{%- endif -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background: url('{{ 'galactic-bg.svg' | asset_url }}') no-repeat center center/cover;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  .featured-collection {
-    text-align: center;
-  }
-
-  .featured-collection__title {
-    font-size: 2rem;
-    color: #ffffff;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    justify-content: center;
-  }
-
-  .product-card {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
-    padding: 10px;
-    position: relative;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .product-card:hover {
-    transform: scale(1.05);
-  }
-
-  .product-card--heroes {
-    border: 2px solid #2333C;
-  }
-
-  .product-card--aliens {
-    border: 2px solid #7658C;
-  }
-
-  .limited-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #FFD700;
-    color: #000;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-radius: 5px;
-  }
-
-  .product-title {
-    font-size: 1.2rem;
-    color: #fff;
-  }
-
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+  }
 
-    .product-grid {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
+  /* Galactic Animated Background */
+  .galactic-bg {
+    background: url('{{ 'galactic-background.jpg' | asset_url }}') center/cover;
+    animation: subtleGlow 10s infinite alternate;
+  }
+
+  @keyframes subtleGlow {
+    from { opacity: 0.95; }
+    to { opacity: 1; }
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding">
-  <div class="featured-collection">
-    <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
-    <div class="product-grid">
-      {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-        {%- assign product_category = product.tags | downcase -%}
-        <div class="product-card {% if product_category contains 'hero' %}product-card--heroes{% elsif product_category contains 'alien' %}product-card--aliens{% endif %}">
-          {% if product.tags contains "Limited Edition" %}
-            <span class="limited-badge">Limited Edition</span>
-          {% endif %}
-          <a href="{{ product.url }}">
-            <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" class="product-image">
-          </a>
-          <h3 class="product-title">{{ product.title }}</h3>
-          <p class="product-price">{{ product.price | money }}</p>
-        </div>
-      {%- endfor -%}
+<div class="color-{{ section.settings.color_scheme }} isolate gradient galactic-bg">
+  <div class="collection section-{{ section.id }}-padding">
+    <div class="collection__title page-width">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      {%- endif -%}
     </div>
+
+    <slider-component class="slider-mobile-gutter">
+      <ul id="Slider-{{ section.id }}" class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop" role="list">
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          <li class="grid__item">
+            <div class="product-card">
+              {% if product.tags contains 'Limited Edition' %}
+                <span class="badge badge--limited">Limited Edition</span>
+              {% endif %}
+              {% if product.tags contains 'Pre-Order' %}
+                <span class="badge badge--preorder">Pre-Order Now</span>
+              {% endif %}
+
+              <a href="{{ product.url }}">
+                <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title }}" class="product-card__image">
+              </a>
+              <div class="product-card__info">
+                <h3 class="product-card__title">{{ product.title }}</h3>
+                <p class="product-card__price">{{ product.price | money }}</p>
+              </div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </slider-component>
   </div>
 </div>
 
@@ -108,7 +88,7 @@
       "type": "inline_richtext",
       "id": "title",
       "default": "Featured Collection",
-      "label": "Section Title"
+      "label": "Title"
     },
     {
       "type": "collection",
@@ -119,15 +99,45 @@
       "type": "range",
       "id": "products_to_show",
       "min": 2,
-      "max": 12,
+      "max": 25,
       "step": 1,
-      "default": 6,
-      "label": "Number of Products to Show"
-    }
-  ],
-  "presets": [
+      "default": 4,
+      "label": "Number of Products to Display"
+    },
     {
-      "name": "Featured Collection"
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Number of Columns on Desktop"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-1",
+      "label": "Color Scheme"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 36
     }
   ]
 }
