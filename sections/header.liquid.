@@ -1,94 +1,78 @@
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'header.css' | asset_url }}" media="print" onload="this.media='all'">
+<script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
 
-{%- style -%}
-  .header {
-    padding: 12px 20px;
-    background: #0b0f19; /* Dark sci-fi background */
-    border-bottom: 2px solid #2333C;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .header__logo {
-    max-width: 140px;
-  }
-
-  .header__icons {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .header__icon {
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .header__icon svg {
-    width: 100%;
-    height: auto;
-    fill: #ffffff;
-  }
-
-  @media screen and (max-width: 768px) {
-    .header {
-      padding: 10px 15px;
-    }
-
-    .header__logo {
-      max-width: 100px;
-    }
-
-    .header__icon {
-      width: 18px;
-      height: 18px;
-    }
-  }
-{%- endstyle -%}
-
-<header class="header">
-  <a href="{{ routes.root_url }}" class="header__logo">
-    {% if settings.logo != blank %}
-      <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}">
-    {% else %}
-      <span class="h2">{{ shop.name }}</span>
-    {% endif %}
-  </a>
-
-  <nav class="header__nav">
-    {% for link in linklists.main-menu.links %}
-      <a href="{{ link.url }}" class="header__nav-item">{{ link.title }}</a>
-    {% endfor %}
-  </nav>
-
-  <div class="header__icons">
-    <a href="{{ routes.search_url }}" class="header__icon">
-      <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
-    </a>
-    {% if shop.customer_accounts_enabled %}
-      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__icon">
-        <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+<header class="header color-{{ section.settings.color_scheme }} gradient">
+  <div class="header__inner page-width">
+    <!-- Logo -->
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" class="header__logo-img">
+        {%- else -%}
+          <span class="header__logo-text">{{ shop.name }}</span>
+        {%- endif -%}
       </a>
-    {% endif %}
-    <a href="{{ routes.cart_url }}" class="header__icon">
-      <span class="svg-wrapper">
-        {% if cart == empty %}
-          {{ 'icon-cart-empty.svg' | inline_asset_content }}
-        {% else %}
-          {{ 'icon-cart.svg' | inline_asset_content }}
-        {% endif %}
-      </span>
-      {% if cart != empty %}
-        <span class="cart-count-bubble">{{ cart.item_count }}</span>
-      {% endif %}
-    </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="header__nav">
+      <ul class="header__menu">
+        {%- for link in section.settings.menu.links -%}
+          <li class="header__menu-item">
+            <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <!-- Header Icons -->
+    <div class="header__icons">
+      <!-- Search Icon -->
+      <a href="{{ routes.search_url }}" class="header__icon">
+        <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
+      </a>
+
+      <!-- Account Icon -->
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon">
+          <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+        </a>
+      {%- endif -%}
+
+      <!-- Cart Icon -->
+      <a href="{{ routes.cart_url }}" class="header__icon">
+        <span class="svg-wrapper">
+          {%- if cart == empty -%}
+            {{ 'icon-cart-empty.svg' | inline_asset_content }}
+          {%- else -%}
+            {{ 'icon-cart.svg' | inline_asset_content }}
+          {%- endif -%}
+        </span>
+        {%- if cart.item_count > 0 -%}
+          <span class="cart-count-bubble">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+    </div>
   </div>
 </header>
 
+{% schema %}
+{
+  "name": "Header",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Main Menu"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-1",
+      "label": "Color Scheme"
+    }
+  ]
+}
+{% endschema %}
