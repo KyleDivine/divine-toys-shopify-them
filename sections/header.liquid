@@ -16,13 +16,15 @@
       </a>
     </div>
 
-    <!-- ✅ Fixed: Navigation (Removed "My Store") -->
+    <!-- ✅ Fixed: Navigation (FORCE REMOVED "My Store") -->
     <nav class="header__nav">
       <ul class="header__menu">
         {%- for link in section.settings.menu.links -%}
-          <li class="header__menu-item">
-            <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
-          </li>
+          {%- unless link.title contains 'My Store' -%}  <!-- 🚀 This removes it -->
+            <li class="header__menu-item">
+              <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+            </li>
+          {%- endunless -%}
         {%- endfor -%}
       </ul>
     </nav>
