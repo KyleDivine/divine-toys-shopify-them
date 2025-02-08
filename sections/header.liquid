@@ -1,80 +1,91 @@
-<link rel="stylesheet" href="{{ 'header.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
-<link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
-
-<header class="header">
-  <div class="header__container">
-
-    <!-- ✅ LOGO FIXED IN TOP-LEFT -->
-    <div class="header__logo">
-      <a href="{{ routes.root_url }}" class="header__logo-link">
-        <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647"
-             alt="Divine Toys Logo" 
-             class="header__logo-img">
-      </a>
-    </div>
-
-    <!-- ✅ Navigation stays RIGHT of the logo -->
-    <nav class="header__nav">
-      <ul class="header__menu">
-        {%- for link in section.settings.menu.links -%}
-          <li class="header__menu-item">
-            <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </nav>
-
-    <!-- ✅ Header Icons on FAR RIGHT -->
-    <div class="header__icons">
-      <a href="{{ routes.search_url }}" class="header__icon">
-        <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
-      </a>
-      {%- if shop.customer_accounts_enabled -%}
-        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon">
-          <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-        </a>
-      {%- endif -%}
-      <a href="{{ routes.cart_url }}" class="header__icon">
-        <span class="svg-wrapper">
-          {%- if cart == empty -%}
-            {{ 'icon-cart-empty.svg' | inline_asset_content }}
-          {%- else -%}
-            {{ 'icon-cart.svg' | inline_asset_content }}
-          {%- endif -%}
-        </span>
-        {%- if cart.item_count > 0 -%}
-          <span class="cart-count-bubble">{{ cart.item_count }}</span>
-        {%- endif -%}
-      </a>
-    </div>
-
-  </div> <!-- End .header__container -->
-</header>
-
-<!-- ✅ PAGE CONTENT WRAPPER ADDED TO PREVENT HEADER HIDING CONTENT -->
-<main class="page-content">
-  <div class="page-width">
-    <h1 class="welcome-title">Welcome to Divine Toys</h1>
-    <p class="welcome-subtitle">Your ultimate destination for sci-fi action figures.</p>
-  </div>
-</main>
-
-<footer class="footer">
-  <p class="footer-text">© 2024 Divine Toys. All rights reserved.</p>
-</footer>
-
-{% schema %}
-{
-  "name": "Header",
-  "tag": "section",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "default": "main-menu",
-      "label": "Main Menu"
-    }
-  ]
+/* ✅ HEADER CONTAINER */
+.header {
+  background-color: black;
+  padding: 15px 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;  /* ❌ FIXED: Removed `fixed` positioning so content is visible */
+  z-index: 1000;
 }
-{% endschema %}
+
+/* ✅ LOGO FIXED IN TOP-LEFT */
+.header__logo {
+  flex-shrink: 0;
+}
+
+.header__logo-link {
+  display: block;
+}
+
+.header__logo-img {
+  max-width: 200px;
+  height: auto;
+}
+
+/* ✅ NAVIGATION FIXED TO THE RIGHT OF THE LOGO */
+.header__nav {
+  margin-left: 30px; /* Space between logo and nav */
+  flex-grow: 1;
+}
+
+.header__menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.header__menu-item {
+  display: inline-block;
+}
+
+.header__menu-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.header__menu-link:hover {
+  color: #ffcc00;
+}
+
+/* ✅ ICONS FIXED ON FAR RIGHT */
+.header__icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* ✅ ENSURES MAIN CONTENT IS VISIBLE BELOW HEADER */
+.page-content {
+  padding-top: 100px; /* Makes sure content is not hidden behind header */
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.welcome-subtitle {
+  font-size: 18px;
+  color: white;
+}
+
+/* ✅ FOOTER FIX */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: black;
+}
+
+.footer-text {
+  color: white;
+  font-size: 14px;
+}
