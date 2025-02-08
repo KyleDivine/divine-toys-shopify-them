@@ -1,33 +1,43 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ shop.name }}</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ shop.name }}</title>
 
-    {{ content_for_header }}
+  <!-- Favicon -->
+  <link rel="icon" href="{{ 'favicon.png' | asset_url }}" type="image/png">
 
-    {{ 'base.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'base.js' | asset_url }}" defer></script>
+  <!-- Shopify Theme Styles -->
+  {{ content_for_header }}
 
-    <style>
-      /* Fix Black Screen */
-      body {
-        background: #0a0a0a;
-        color: #ffffff;
-      }
+  <!-- ✅ Fixed: Properly linking CSS files -->
+  <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'header.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
 
-      /* Fix Navigation Colors */
-      .header__menu-link {
-        color: #ffffff;
-      }
-    </style>
-  </head>
-  <body>
+  <!-- ✅ Fixed: JavaScript File References -->
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  <script src="{{ 'header.js' | asset_url }}" defer></script>
+  <script src="{{ 'cart.js' | asset_url }}" defer></script>
+</head>
+
+<body>
+  <!-- ✅ Fixed: Ensuring Layout Loads -->
+  <div class="page-container">
+    
+    <!-- ✅ Header Section -->
     {% section 'header' %}
-    <main role="main">
+
+    <!-- ✅ Main Content -->
+    <main class="main-content" role="main">
       {{ content_for_layout }}
     </main>
+
+    <!-- ✅ Footer Section -->
     {% section 'footer' %}
-  </body>
+    
+  </div>
+</body>
 </html>
