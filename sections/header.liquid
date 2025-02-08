@@ -5,7 +5,7 @@
 <header class="header">
   <div class="header__container">
 
-    <!-- ✅ LOGO FIXED IN TOP-LEFT (Original Path Restored) -->
+    <!-- ✅ LOGO FIXED IN TOP-LEFT -->
     <div class="header__logo">
       <a href="{{ routes.root_url }}" class="header__logo-link">
         <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647"
@@ -14,7 +14,7 @@
       </a>
     </div>
 
-    <!-- ✅ Navigation now correctly aligned to the RIGHT of the logo -->
+    <!-- ✅ Navigation stays RIGHT of the logo -->
     <nav class="header__nav">
       <ul class="header__menu">
         {%- for link in section.settings.menu.links -%}
@@ -25,7 +25,7 @@
       </ul>
     </nav>
 
-    <!-- ✅ Header Icons stay on FAR RIGHT -->
+    <!-- ✅ Header Icons on FAR RIGHT -->
     <div class="header__icons">
       <a href="{{ routes.search_url }}" class="header__icon">
         <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
@@ -50,8 +50,19 @@
     </div>
 
   </div> <!-- End .header__container -->
-
 </header>
+
+<!-- ✅ PAGE CONTENT WRAPPER ADDED TO PREVENT HEADER HIDING CONTENT -->
+<main class="page-content">
+  <div class="page-width">
+    <h1 class="welcome-title">Welcome to Divine Toys</h1>
+    <p class="welcome-subtitle">Your ultimate destination for sci-fi action figures.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <p class="footer-text">© 2024 Divine Toys. All rights reserved.</p>
+</footer>
 
 {% schema %}
 {
