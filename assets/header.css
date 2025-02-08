@@ -1,40 +1,43 @@
-/* Reset */
-body, ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.header {
+  background-color: black;
+  padding: 15px 0;
 }
 
-/* Header Container */
-.header {
+.header__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ✅ Ensures Flexbox Layout for Header */
+.header__flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  background: #000;
-  color: #fff;
+  width: 100%;
 }
 
-/* Logo */
+/* ✅ Logo Styling */
 .header__logo img {
-  height: 50px;
+  max-width: 200px;
+  height: auto;
 }
 
-.header__logo-text {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* Navigation */
+/* ✅ Aligns Navigation Next to Logo */
 .header__nav {
   flex-grow: 1;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .header__menu {
+  list-style: none;
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .header__menu-item {
@@ -42,38 +45,19 @@ body, ul {
 }
 
 .header__menu-link {
+  color: white;
   text-decoration: none;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-/* Header Icons */
+.header__menu-link:hover {
+  color: #ffcc00;
+}
+
+/* ✅ Aligns Icons to the Right */
 .header__icons {
   display: flex;
-  gap: 20px;
-}
-
-.header__icon {
-  display: flex;
-  align-items: center;
-}
-
-.svg-wrapper {
-  width: 24px;
-  height: 24px;
-  fill: white;
-}
-
-/* Cart Badge */
-.cart-count-bubble {
-  background: red;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 50%;
-  position: absolute;
-  top: -5px;
-  right: -10px;
+  gap: 15px;
 }
