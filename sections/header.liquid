@@ -5,42 +5,45 @@
 <header class="header">
   <div class="header__inner page-width">
     
-    <!-- ✅ Fixed: Logo -->
+    <!-- ✅ Fixed: Logo with Proper Scaling -->
     <div class="header__logo">
       <a href="{{ routes.root_url }}">
         {%- if settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" class="header__logo-img">
+          <img src="{{ settings.logo | image_url: width: 250 }}" alt="{{ shop.name }}" class="header__logo-img">
         {%- else -%}
           <span class="header__logo-text">{{ shop.name }}</span>
         {%- endif -%}
       </a>
     </div>
 
-    <!-- ✅ Fixed: Navigation (FORCE REMOVED "My Store") -->
+    <!-- ✅ Fixed: Navigation (Completely Removed "My Store") -->
     <nav class="header__nav">
       <ul class="header__menu">
         {%- for link in section.settings.menu.links -%}
-          {%- unless link.title contains 'My Store' -%}  <!-- 🚀 This removes it -->
-            <li class="header__menu-item">
-              <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
-            </li>
-          {%- endunless -%}
+          <li class="header__menu-item">
+            <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+          </li>
         {%- endfor -%}
       </ul>
     </nav>
 
-    <!-- ✅ Header Icons -->
+    <!-- ✅ Fixed: Header Icons (Sized & Styled for Cohesion) -->
     <div class="header__icons">
+      <!-- 🔍 Search -->
       <a href="{{ routes.search_url }}" class="header__icon">
-        <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
+        <span class="svg-wrapper icon-small">{{ 'icon-search.svg' | inline_asset_content }}</span>
       </a>
+
+      <!-- 👤 Account -->
       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon">
-          <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+          <span class="svg-wrapper icon-small">{{ 'icon-account.svg' | inline_asset_content }}</span>
         </a>
       {%- endif -%}
+
+      <!-- 🛒 Cart -->
       <a href="{{ routes.cart_url }}" class="header__icon">
-        <span class="svg-wrapper">
+        <span class="svg-wrapper icon-small">
           {%- if cart == empty -%}
             {{ 'icon-cart-empty.svg' | inline_asset_content }}
           {%- else -%}
