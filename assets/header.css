@@ -3,21 +3,16 @@
   background-color: black;
   padding: 15px 0;
   width: 100%;
-}
-
-/* ✅ Header flex container for perfect spacing */
-.header__container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  align-items: center;
 }
 
 /* ✅ LOGO STAYS ON THE FAR LEFT */
 .header__logo {
-  flex: 0 1 auto;
+  position: absolute;
+  top: 15px;
+  left: 20px;
 }
 
 .header__logo-link {
@@ -29,14 +24,16 @@
   height: auto;
 }
 
-/* ✅ NAVIGATION MOVED RIGHT OF LOGO */
+/* ✅ NAVIGATION MOVED TO THE BOTTOM-RIGHT OF LOGO */
+.header__nav-container {
+  position: absolute;
+  bottom: 10px;
+  left: 230px; /* Adjusts navigation to sit to the right of the logo */
+}
+
 .header__nav {
-  flex-grow: 1;
   display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
-  margin-left: 20px;  /* ⬅ Ensures it sits right of logo */
-  padding-bottom: 10px;
 }
 
 .header__menu {
@@ -65,8 +62,10 @@
 
 /* ✅ Icons stay on the FAR RIGHT */
 .header__icons {
+  position: absolute;
+  right: 20px;
+  top: 15px;
   display: flex;
   gap: 15px;
   align-items: center;
 }
-
