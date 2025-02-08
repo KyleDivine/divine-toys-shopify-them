@@ -1,17 +1,18 @@
 .header {
   background-color: black;
   padding: 15px 0;
+  width: 100%;
 }
 
 .header__inner {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ✅ Ensures Flexbox Layout for Header */
+/* ✅ Ensures Proper Spacing Between Elements */
 .header__flex {
   display: flex;
   justify-content: space-between;
@@ -19,17 +20,21 @@
   width: 100%;
 }
 
-/* ✅ Logo Styling */
+/* ✅ Logo Flush Left */
+.header__logo {
+  margin-right: auto;
+}
+
 .header__logo img {
   max-width: 200px;
   height: auto;
 }
 
-/* ✅ Aligns Navigation Next to Logo */
+/* ✅ Navigation Positioned Next to Logo */
 .header__nav {
   flex-grow: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .header__menu {
@@ -56,7 +61,7 @@
   color: #ffcc00;
 }
 
-/* ✅ Aligns Icons to the Right */
+/* ✅ Align Icons to the Far Right */
 .header__icons {
   display: flex;
   gap: 15px;
