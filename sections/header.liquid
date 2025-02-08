@@ -3,25 +3,20 @@
 <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
 
 <header class="header">
-  <div class="header__inner page-width">
+  <div class="header__inner">
 
-    <!-- ✅ Updated Flexbox Layout for Horizontal Alignment -->
     <div class="header__flex">
       
-      <!-- ✅ Logo on the Left -->
+      <!-- ✅ Logo: Flush Left -->
       <div class="header__logo">
         <a href="{{ routes.root_url }}">
-          {%- if settings.logo != blank -%}
-            <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" class="header__logo-img">
-          {%- else -%}
-            <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647" 
-                 alt="Divine Toys Logo" 
-                 class="header__logo-img">
-          {%- endif -%}
+          <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647" 
+               alt="Divine Toys Logo" 
+               class="header__logo-img">
         </a>
       </div>
 
-      <!-- ✅ Navigation Menu on the Right -->
+      <!-- ✅ Navigation: To the Right of Logo -->
       <nav class="header__nav">
         <ul class="header__menu">
           {%- for link in section.settings.menu.links -%}
@@ -32,7 +27,7 @@
         </ul>
       </nav>
 
-      <!-- ✅ Header Icons (Right Aligned) -->
+      <!-- ✅ Header Icons (Far Right) -->
       <div class="header__icons">
         <a href="{{ routes.search_url }}" class="header__icon">
           <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
