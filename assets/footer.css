@@ -1,0 +1,14 @@
+/* ============================
+   FOOTER STYLESHEET (footer.css)
+   ============================ */
+
+.footer {
+  background: #111111; /* Dark Footer */
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #cccccc;
+}
