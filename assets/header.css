@@ -6,11 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
+  position: relative;  /* ❌ FIXED: Removed `fixed` positioning so content is visible */
   z-index: 1000;
 }
 
@@ -63,4 +59,33 @@
   display: flex;
   gap: 15px;
   align-items: center;
+}
+
+/* ✅ ENSURES MAIN CONTENT IS VISIBLE BELOW HEADER */
+.page-content {
+  padding-top: 100px; /* Makes sure content is not hidden behind header */
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.welcome-subtitle {
+  font-size: 18px;
+  color: white;
+}
+
+/* ✅ FOOTER FIX */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: black;
+}
+
+.footer-text {
+  color: white;
+  font-size: 14px;
 }
