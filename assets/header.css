@@ -1,30 +1,22 @@
+/* ✅ Ensures the header is spaced correctly */
 .header {
   background-color: black;
   padding: 15px 0;
   width: 100%;
 }
 
-.header__inner {
+/* ✅ Header flex container for proper spacing */
+.header__container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ✅ Ensures Proper Spacing Between Elements */
-.header__flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-/* ✅ Logo Flush Left */
-.header__logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+/* ✅ Logo on FAR LEFT */
+.header__logo {
+  flex: 0 1 auto;
 }
 
 .header__logo-link {
@@ -36,9 +28,13 @@
   height: auto;
 }
 
-/* ✅ Navigation Positioned at Bottom Right of Logo */
+/* ✅ Navigation BELOW Logo & Aligned to the Bottom Right */
 .header__nav {
-  margin-top: 10px;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-bottom: 5px;
 }
 
 .header__menu {
@@ -65,8 +61,9 @@
   color: #ffcc00;
 }
 
-/* ✅ Align Icons to the Far Right */
+/* ✅ Align Icons to the FAR RIGHT */
 .header__icons {
   display: flex;
   gap: 15px;
+  align-items: center;
 }
