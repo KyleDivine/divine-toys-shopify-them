@@ -8,24 +8,24 @@
     <div class="header__flex">
       
       <!-- ✅ Logo: Flush Left -->
-      <div class="header__logo">
-        <a href="{{ routes.root_url }}">
+      <div class="header__logo-container">
+        <a href="{{ routes.root_url }}" class="header__logo-link">
           <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647" 
                alt="Divine Toys Logo" 
                class="header__logo-img">
         </a>
+        
+        <!-- ✅ Navigation Positioned at Bottom Right of Logo -->
+        <nav class="header__nav">
+          <ul class="header__menu">
+            {%- for link in section.settings.menu.links -%}
+              <li class="header__menu-item">
+                <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
       </div>
-
-      <!-- ✅ Navigation: To the Right of Logo -->
-      <nav class="header__nav">
-        <ul class="header__menu">
-          {%- for link in section.settings.menu.links -%}
-            <li class="header__menu-item">
-              <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
-            </li>
-          {%- endfor -%}
-        </ul>
-      </nav>
 
       <!-- ✅ Header Icons (Far Right) -->
       <div class="header__icons">
