@@ -1,7 +1,94 @@
-{% comment %}
-Header section for Divine Toys
-{% endcomment %}
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
 
-<header>
-  <h1>Galactic Squad</h1>
+{%- style -%}
+  .header {
+    padding: 12px 20px;
+    background: #0b0f19; /* Dark sci-fi background */
+    border-bottom: 2px solid #2333C;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header__logo {
+    max-width: 140px;
+  }
+
+  .header__icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .header__icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__icon svg {
+    width: 100%;
+    height: auto;
+    fill: #ffffff;
+  }
+
+  @media screen and (max-width: 768px) {
+    .header {
+      padding: 10px 15px;
+    }
+
+    .header__logo {
+      max-width: 100px;
+    }
+
+    .header__icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+{%- endstyle -%}
+
+<header class="header">
+  <a href="{{ routes.root_url }}" class="header__logo">
+    {% if settings.logo != blank %}
+      <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}">
+    {% else %}
+      <span class="h2">{{ shop.name }}</span>
+    {% endif %}
+  </a>
+
+  <nav class="header__nav">
+    {% for link in linklists.main-menu.links %}
+      <a href="{{ link.url }}" class="header__nav-item">{{ link.title }}</a>
+    {% endfor %}
+  </nav>
+
+  <div class="header__icons">
+    <a href="{{ routes.search_url }}" class="header__icon">
+      <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
+    </a>
+    {% if shop.customer_accounts_enabled %}
+      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__icon">
+        <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+      </a>
+    {% endif %}
+    <a href="{{ routes.cart_url }}" class="header__icon">
+      <span class="svg-wrapper">
+        {% if cart == empty %}
+          {{ 'icon-cart-empty.svg' | inline_asset_content }}
+        {% else %}
+          {{ 'icon-cart.svg' | inline_asset_content }}
+        {% endif %}
+      </span>
+      {% if cart != empty %}
+        <span class="cart-count-bubble">{{ cart.item_count }}</span>
+      {% endif %}
+    </a>
+  </div>
 </header>
+
