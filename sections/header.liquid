@@ -5,45 +5,44 @@
 <header class="header">
   <div class="header__inner page-width">
     
-    <!-- ✅ Fixed: Logo with Proper Scaling -->
+    <!-- ✅ Updated Logo Section -->
     <div class="header__logo">
       <a href="{{ routes.root_url }}">
         {%- if settings.logo != blank -%}
-          <img src="{{ settings.logo | image_url: width: 250 }}" alt="{{ shop.name }}" class="header__logo-img">
+          <img src="{{ settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" class="header__logo-img">
         {%- else -%}
-          <span class="header__logo-text">{{ shop.name }}</span>
+          <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647" 
+               alt="Divine Toys Logo" 
+               class="header__logo-img">
         {%- endif -%}
       </a>
     </div>
 
-    <!-- ✅ Fixed: Navigation (Completely Removed "My Store") -->
+    <!-- ✅ Fixed: Navigation (FORCE REMOVED "My Store") -->
     <nav class="header__nav">
       <ul class="header__menu">
         {%- for link in section.settings.menu.links -%}
-          <li class="header__menu-item">
-            <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
-          </li>
+          {%- unless link.title contains 'My Store' -%}  
+            <li class="header__menu-item">
+              <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+            </li>
+          {%- endunless -%}
         {%- endfor -%}
       </ul>
     </nav>
 
-    <!-- ✅ Fixed: Header Icons (Sized & Styled for Cohesion) -->
+    <!-- ✅ Header Icons -->
     <div class="header__icons">
-      <!-- 🔍 Search -->
       <a href="{{ routes.search_url }}" class="header__icon">
-        <span class="svg-wrapper icon-small">{{ 'icon-search.svg' | inline_asset_content }}</span>
+        <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
       </a>
-
-      <!-- 👤 Account -->
       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon">
-          <span class="svg-wrapper icon-small">{{ 'icon-account.svg' | inline_asset_content }}</span>
+          <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
         </a>
       {%- endif -%}
-
-      <!-- 🛒 Cart -->
       <a href="{{ routes.cart_url }}" class="header__icon">
-        <span class="svg-wrapper icon-small">
+        <span class="svg-wrapper">
           {%- if cart == empty -%}
             {{ 'icon-cart-empty.svg' | inline_asset_content }}
           {%- else -%}
