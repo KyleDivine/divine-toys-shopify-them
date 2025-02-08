@@ -5,7 +5,7 @@
 <header class="header">
   <div class="header__container">
 
-    <!-- ✅ Logo (LEFT & STATIC) -->
+    <!-- ✅ LOGO REMAINS AT TOP-LEFT -->
     <div class="header__logo">
       <a href="{{ routes.root_url }}" class="header__logo-link">
         <img src="https://cdn.shopify.com/s/files/1/0741/7380/8897/files/C7453B62-46E3-460E-BB48-52D625ACBF5B.png?v=1738930647"
@@ -14,18 +14,20 @@
       </a>
     </div>
 
-    <!-- ✅ Navigation (DIRECTLY TO THE RIGHT OF LOGO) -->
-    <nav class="header__nav">
-      <ul class="header__menu">
-        {%- for link in section.settings.menu.links -%}
-          <li class="header__menu-item">
-            <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
-          </li>
-        {%- endfor -%}
-      </ul>
-    </nav>
+    <!-- ✅ Navigation positioned at bottom-right of LOGO -->
+    <div class="header__nav-container">
+      <nav class="header__nav">
+        <ul class="header__menu">
+          {%- for link in section.settings.menu.links -%}
+            <li class="header__menu-item">
+              <a href="{{ link.url }}" class="header__menu-link">{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </div>
 
-    <!-- ✅ Header Icons (Aligned to FAR RIGHT) -->
+    <!-- ✅ Header Icons stay on FAR RIGHT -->
     <div class="header__icons">
       <a href="{{ routes.search_url }}" class="header__icon">
         <span class="svg-wrapper">{{ 'icon-search.svg' | inline_asset_content }}</span>
